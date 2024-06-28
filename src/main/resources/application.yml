@@ -1,0 +1,52 @@
+spring:
+  profiles:
+    default: dev
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  application:
+    name: nunutalk
+  datasource:
+    url: jdbc:postgresql://db.langsa.ai:18902/dev
+    username: langsa
+    password: langsa123#
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 100
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  application:
+    name: nunutalk
+  datasource:
+    url: jdbc:postgresql://db.langsa.ai:18902/test
+    username: langsa
+    password: langsa123#
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    database: postgresql
+    hibernate:
+      ddl-auto: create-drop
+#      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 100

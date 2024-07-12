@@ -17,7 +17,10 @@ class ChatMessageServiceTest {
     @Test
     void save() {
         // given
-        ChatMessage chatMessage = ChatMessage.builder().sender("홍길동").msg("안녕하세요 저는 홍길동 입니다").build();
+        ChatMessage chatMessage = ChatMessage.builder()
+                .sender("홍길동")
+                .msg("안녕하세요 저는 홍길동 입니다")
+                .build();
 
         // when
         chatRepository.save(chatMessage);

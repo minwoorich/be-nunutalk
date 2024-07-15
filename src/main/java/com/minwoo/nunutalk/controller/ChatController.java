@@ -1,16 +1,37 @@
 package com.minwoo.nunutalk.controller;
 
-import org.springframework.messaging.handler.annotation.DestinationVariable;
+import com.minwoo.nunutalk.domain.ChatMessage;
+import com.minwoo.nunutalk.service.ChatService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
+@RequiredArgsConstructor
 public class ChatController {
 
-    private static final String GREETING_MESSAGE = "채팅방에 입장하신것을 환영합니다";
+    private final SimpMessagingTemplate template;
+    private final ChatService chatService;
 
-    @SubscribeMapping("/topic/{roomNo}")
-    public String join(@DestinationVariable String roomNo) {
-        return GREETING_MESSAGE;
+    @PostMapping("/chatroom")
+    public void createRoom(@RequestBody CreateRoomRecord createRoomRecord){
+
+    }
+    @SubscribeMapping("/message")
+    public void join(Message<SubsMessageRecord> message) {
+
+    }
+    @MessageMapping("/message")
+    public void send(Message<SendMessageRecord> message) {
+        template.convertAndSend("/chat-room",message.getPayload());
+        ChatMessage savedMessage = chatService.saveMessage(message.getPayload());
+        log.info("savedMessage:{}",savedMessage);
     }
 }

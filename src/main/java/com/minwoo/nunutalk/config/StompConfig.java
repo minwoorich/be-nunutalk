@@ -1,15 +1,19 @@
 package com.minwoo.nunutalk.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+@Configuration
+@EnableWebSocketMessageBroker // 이거 없으면 에러남!!
 public class StompConfig implements WebSocketMessageBrokerConfigurer {
 
     // 웹소켓 핸드쉐이크 하는 엔드 포인트
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").withSockJS();
+        registry.addEndpoint("/ws/chat").setAllowedOriginPatterns("*");
     }
 
     @Override

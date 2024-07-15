@@ -1,26 +1,30 @@
 package com.minwoo.nunutalk.domain;
 
+import com.minwoo.nunutalk.domain.uuid.GeneratedUuid;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Room {
+public class ChatRoom {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedUuid
+    private UUID id;
     private String title;
+    private String state;
 
     @Builder
-    private Room(String title) {
+    private ChatRoom(UUID id, String title, String state) {
+        this.id = id;
         this.title = title;
+        this.state = state;
     }
 }

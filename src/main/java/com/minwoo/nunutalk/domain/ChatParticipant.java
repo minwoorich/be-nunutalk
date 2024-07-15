@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 @Entity
-@Table(name = "chat_participants")
+@Table(name = "chat_participant")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ChatParticipants extends BaseEntity {
+public class ChatParticipant extends BaseEntity {
     @Id @GeneratedUuid
     private UUID id;
 

@@ -11,7 +11,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "member_room")
-public class MemberRoom {
+public class MemberRoom extends BaseEntity {
     @Id @GeneratedUuid
     private UUID id;
 

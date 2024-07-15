@@ -12,7 +12,7 @@ import java.util.UUID;
 @Table(name = "chat_participants")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ChatParticipants {
+public class ChatParticipants extends BaseEntity {
     @Id @GeneratedUuid
     private UUID id;
 

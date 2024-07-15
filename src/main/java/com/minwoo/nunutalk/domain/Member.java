@@ -10,7 +10,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "member")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class Member extends BaseEntity {
     @Id @GeneratedUuid
     @Column(name = "member_id")
     private UUID id;

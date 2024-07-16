@@ -21,15 +21,15 @@ public class ChatController {
     private final ChatService chatService;
 
     @PostMapping("/chatroom")
-    public void createRoom(@RequestBody CreateRoomRecord createRoomRecord){
+    public void createRoom(@RequestBody CreateRoomDto createRoomDto){
 
     }
     @SubscribeMapping("/message")
-    public void join(Message<SubsMessageRecord> message) {
+    public void join(Message<SubsMessageDto> message) {
 
     }
     @MessageMapping("/message")
-    public void send(Message<SendMessageRecord> message) {
+    public void send(Message<SendMessageDto> message) {
         template.convertAndSend("/chat-room",message.getPayload());
         ChatMessage savedMessage = chatService.saveMessage(message.getPayload());
         log.info("savedMessage:{}",savedMessage);

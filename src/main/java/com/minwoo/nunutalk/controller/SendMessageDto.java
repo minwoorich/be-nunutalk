@@ -7,7 +7,7 @@ import com.minwoo.nunutalk.domain.enums.MessageType;
 
 import java.util.UUID;
 
-public record SendMessageRecord(UUID roomId, UUID senderId, String msg, MessageType type) {
+public record SendMessageDto(UUID roomId, UUID senderId, String msg, MessageType type) {
     public ChatMessage toEntity(){
         ChatRoom chatRoom = ChatRoom.builder().id(roomId).build();
         Member sender = Member.builder().id(senderId).build();

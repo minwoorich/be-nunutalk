@@ -1,7 +1,7 @@
 package com.minwoo.nunutalk.service;
 
-import com.minwoo.nunutalk.controller.SendMessageRecord;
-import com.minwoo.nunutalk.controller.SubsMessageRecord;
+import com.minwoo.nunutalk.controller.SendMessageDto;
+import com.minwoo.nunutalk.controller.SubsMessageDto;
 import com.minwoo.nunutalk.domain.ChatMessage;
 import com.minwoo.nunutalk.domain.ChatRoom;
 import com.minwoo.nunutalk.domain.port.ChatMessageRepository;
@@ -24,12 +24,11 @@ public class ChatService {
         return chatMessageRepository.findById(id);
     }
 
-    // TODO
-//    public ChatRoom createRoom(SubsMessageRecord message) {
-//
-//    }
+    public ChatRoom createRoom(SubsMessageDto message) {
 
-    public ChatMessage saveMessage(SendMessageRecord message) {
+    }
+
+    public ChatMessage saveMessage(SendMessageDto message) {
         ChatMessage messageEntity = message.toEntity();
         log.info("save chat message: {}", messageEntity);
         return chatMessageRepository.save(messageEntity);

@@ -4,5 +4,5 @@ import com.minwoo.nunutalk.domain.enums.MessageType;
 
 import java.util.UUID;
 
-public record SubsMessageRecord(UUID senderId, MessageType type) {
+public record SubsMessageDto(UUID senderId, MessageType type) {
 }

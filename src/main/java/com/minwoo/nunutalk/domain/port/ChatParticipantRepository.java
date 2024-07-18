@@ -9,5 +9,5 @@ public interface ChatParticipantRepository {
     ChatParticipant findById(UUID id);
     ChatParticipant save(ChatParticipant chatParticipant);
     List<ChatParticipant> findByMemberId(UUID memberId);
-    List<ChatParticipant> findByChatRoomId(UUID memberId);
+    List<ChatParticipant> findByChatRoomId(UUID chatRoomId);
 }

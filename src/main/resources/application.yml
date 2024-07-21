@@ -16,9 +16,9 @@ spring:
   application:
     name: nunutalk
   datasource:
-    url: jdbc:postgresql://db.langsa.ai:18902/dev
-    username: langsa
-    password: langsa123#
+    url: jdbc:postgresql://43.201.203.85:5432/nunutalk
+    username: admin
+    password: 1234
     driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true

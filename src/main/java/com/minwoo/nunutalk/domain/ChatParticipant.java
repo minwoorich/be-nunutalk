@@ -14,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChatParticipant extends BaseEntity {
     @Id @GeneratedUuid
+    @Column(name = "chat_participant_id")
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -3,6 +3,8 @@ package com.minwoo.nunutalk.domain;
 import com.minwoo.nunutalk.domain.enums.ChatRoomState;
 import com.minwoo.nunutalk.domain.uuid.GeneratedUuid;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -20,6 +22,8 @@ public class ChatRoom extends BaseEntity {
     @GeneratedUuid
     private UUID id;
     private String title;
+
+    @Enumerated(EnumType.STRING)
     private ChatRoomState state;
 
     @Builder

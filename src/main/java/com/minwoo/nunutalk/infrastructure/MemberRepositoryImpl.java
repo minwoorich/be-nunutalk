@@ -5,6 +5,7 @@ import com.minwoo.nunutalk.domain.port.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -21,5 +22,10 @@ public class MemberRepositoryImpl implements MemberRepository {
     @Override
     public Member save(Member member) {
         return memberJpaRepository.save(member);
+    }
+
+    @Override
+    public List<Member> findAllIn(List<UUID> ids) {
+        return memberJpaRepository.findAllById(ids);
     }
 }

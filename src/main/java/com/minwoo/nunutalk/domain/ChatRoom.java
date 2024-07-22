@@ -1,5 +1,6 @@
 package com.minwoo.nunutalk.domain;
 
+import com.minwoo.nunutalk.domain.enums.ChatRoomState;
 import com.minwoo.nunutalk.domain.uuid.GeneratedUuid;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -19,10 +20,10 @@ public class ChatRoom extends BaseEntity {
     @GeneratedUuid
     private UUID id;
     private String title;
-    private String state;
+    private ChatRoomState state;
 
     @Builder
-    private ChatRoom(UUID id, String title, String state) {
+    private ChatRoom(UUID id, String title, ChatRoomState state) {
         this.id = id;
         this.title = title;
         this.state = state;

@@ -40,4 +40,8 @@ public class ChatParticipant extends BaseEntity {
     public void linkMember(Member member) {
         this.member = member;
     }
+
+    public static ChatParticipant create(ChatRoom chatRoom, Member member) {
+        return ChatParticipant.builder().member(member).chatRoom(chatRoom).build();
+    }
 }

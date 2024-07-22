@@ -32,4 +32,8 @@ public class ChatRoom extends BaseEntity {
         this.title = title;
         this.state = state;
     }
+
+    public static ChatRoom create(String title, ChatRoomState state) {
+        return ChatRoom.builder().state(state).title(title).build();
+    }
 }

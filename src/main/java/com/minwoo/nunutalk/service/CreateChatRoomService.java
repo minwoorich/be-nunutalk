@@ -4,7 +4,6 @@ import com.minwoo.nunutalk.controller.CreateRoomDto;
 import com.minwoo.nunutalk.domain.ChatParticipant;
 import com.minwoo.nunutalk.domain.ChatRoom;
 import com.minwoo.nunutalk.domain.Member;
-import com.minwoo.nunutalk.domain.enums.ChatRoomState;
 import com.minwoo.nunutalk.domain.port.ChatParticipantRepository;
 import com.minwoo.nunutalk.domain.port.ChatRoomRepository;
 import com.minwoo.nunutalk.domain.port.MemberRepository;
@@ -12,9 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.UUID;
+import java.util.List;
 
-import static com.minwoo.nunutalk.domain.enums.ChatRoomState.*;
+import static com.minwoo.nunutalk.domain.enums.ChatRoomState.ACTIVE;
 
 @Service
 @RequiredArgsConstructor
@@ -28,16 +27,16 @@ public class CreateChatRoomService {
     @Transactional
     public ChatRoom create(CreateRoomDto createRoomDto) {
 
-        ChatRoom chatRoom = chatRoomRepository.save(ChatRoom.builder().state(ACTIVE).title(createRoomDto.title()).build());
+        // 채팅방 엔티티 생성 및 저장
+        ChatRoom chatRoom = chatRoomRepository.save(ChatRoom.create(createRoomDto.title(), ACTIVE));
 
-        Member owner = memberRepository.findById(createRoomDto.ownerId());
-        Member friend = memberRepository.findById(createRoomDto.friendId());
+        // 채팅방에 참가한 모든 인원들 엔티티 생성 및 저장
+        List<Member> members = memberRepository.findAllIn(createRoomDto.memberIds());
 
-        ChatParticipant chatParticipantOwner = ChatParticipant.builder().member(owner).chatRoom(chatRoom).build();
-        ChatParticipant chatParticipantFriend = ChatParticipant.builder().member(friend).chatRoom(chatRoom).build();
-
-        chatParticipantRepository.save(chatParticipantOwner);
-        chatParticipantRepository.save(chatParticipantFriend);
+        // ChatParticipant (연결 테이블) 생성 및 저장
+        members.stream()
+                .map(member -> ChatParticipant.create(chatRoom, member))
+                .forEach(chatParticipantRepository::save);
 
         return chatRoom;
     }

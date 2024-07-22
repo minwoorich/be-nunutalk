@@ -12,7 +12,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ChatParticipantRepositoryImpl implements ChatParticipantRepository {
 
-    private final ChatPariticipantJpaRepository jpaRepository;
+    private final ChatParticipantJpaRepository jpaRepository;
 
     @Override
     public ChatParticipant findById(UUID id) {

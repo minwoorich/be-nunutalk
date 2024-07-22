@@ -7,18 +7,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class ChatService {
 
     private final ChatMessageRepository chatMessageRepository;
-
-    public ChatMessage findById(UUID id) {
-        return chatMessageRepository.findById(id);
-    }
 
     public ChatMessage saveMessage(SendMessageDto message) {
         ChatMessage messageEntity = message.toEntity();

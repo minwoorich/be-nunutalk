@@ -22,4 +22,8 @@ public record MemberChatRoomsResp(UUID memberId, List<ChatRoomInfo> chatRoomInfo
                     .build();
         }
     }
+
+    public static MemberChatRoomsResp create(UUID memberId, List<ChatRoomInfo> chatRoomInfos) {
+        return MemberChatRoomsResp.builder().memberId(memberId).chatRoomInfos(chatRoomInfos).build();
+    }
 }

@@ -13,7 +13,7 @@ import java.util.UUID;
 public record MemberChatRoomsResp(UUID memberId, List<ChatRoomInfo> chatRoomInfos) {
     @Builder
     public record ChatRoomInfo(UUID roomId, ChatRoomState state, String title, ZonedDateTime createdAt){
-        public ChatRoomInfo from(ChatRoom chatRoom){
+        public static ChatRoomInfo from(ChatRoom chatRoom){
             return ChatRoomInfo.builder()
                     .roomId(chatRoom.getId())
                     .state(chatRoom.getState())

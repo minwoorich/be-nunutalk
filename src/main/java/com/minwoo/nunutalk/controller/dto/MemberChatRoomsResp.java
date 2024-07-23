@@ -1,5 +1,6 @@
 package com.minwoo.nunutalk.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.minwoo.nunutalk.domain.ChatRoom;
 import com.minwoo.nunutalk.domain.enums.ChatRoomState;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import java.util.UUID;
 @Builder
 public record MemberChatRoomsResp(UUID memberId, List<ChatRoomInfo> chatRoomInfos) {
     @Builder
-    public record ChatRoomInfo(UUID roomId, ChatRoomState state, String title, ZonedDateTime createdAt){
+    public record ChatRoomInfo(UUID roomId, ChatRoomState state, String title, @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") ZonedDateTime createdAt){
         public static ChatRoomInfo from(ChatRoom chatRoom){
             return ChatRoomInfo.builder()
                     .roomId(chatRoom.getId())

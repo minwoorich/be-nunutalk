@@ -31,13 +31,20 @@ public class ChatController {
     private final GetChatRoomService getChatRoomService;
 
     @PostMapping("/chatrooms")
-    public ResponseEntity<ChatRoom> createRoom(@RequestBody CreateRoomDto createRoomDto){
+    public ResponseEntity<ChatRoom> createChatRoom(@RequestBody CreateRoomDto createRoomDto){
         return ResponseEntity.ok(createChatRoomService.create(createRoomDto));
     }
 
     @GetMapping("/chatrooms/{memberId}")
-    public ResponseEntity<List<ChatRoom>> getChatRooms(@PathVariable(name = "memberId") UUID memberId){
-        return ResponseEntity.ok(getChatRoomService.findAllChatRooms(memberId));
+    public ResponseEntity<MemberChatRoomsResp> getChatRooms(@PathVariable(name = "memberId") UUID memberId){
+        return ResponseEntity.ok(MemberChatRoomsResp.create(memberId, getChatRoomInfos(memberId)));
+    }
+
+    private List<MemberChatRoomsResp.ChatRoomInfo> getChatRoomInfos(UUID memberId) {
+        return getChatRoomService
+                .findAllChatRooms(memberId).stream()
+                .map(MemberChatRoomsResp.ChatRoomInfo::from)
+                .toList();
     }
 
     @MessageMapping("/messages")
@@ -46,8 +53,5 @@ public class ChatController {
         ChatMessage savedMessage = chatService.saveMessage(message.getPayload());
         log.info("savedMessage:{}",savedMessage);
     }
-
-    // TODO
-    static record GetChatRoomDto(String roomId, String memberId) {}
 
 }

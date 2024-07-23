@@ -5,6 +5,7 @@ import com.minwoo.nunutalk.domain.ChatRoom;
 import com.minwoo.nunutalk.domain.enums.ChatRoomState;
 import lombok.Builder;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -13,7 +14,7 @@ import java.util.UUID;
 @Builder
 public record MemberChatRoomsResp(UUID memberId, List<ChatRoomInfo> ChatRoomInfos) {
     @Builder
-    public record ChatRoomInfo(UUID roomId, ChatRoomState state, String title, @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") ZonedDateTime createdAt){
+    public record ChatRoomInfo(UUID roomId, ChatRoomState state, String title, @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime createdAt){
         public static ChatRoomInfo from(ChatRoom ChatRoom){
             return ChatRoomInfo.builder()
                     .roomId(ChatRoom.getId())

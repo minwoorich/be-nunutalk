@@ -44,10 +44,7 @@ public class ChatController {
 
     @Operation(summary = "채팅방 생성", description = "채팅방을 오픈할 때 호출하는 API")
     @ApiResponse(responseCode = "200", description = "채팅방생성에 성공하셨습니다", content = @Content(mediaType = "application/json"))
-    @Parameters({
-            @Parameter(name = "title", description = "채팅방 제목", example = "독서 스터디 모임"),
-            @Parameter(name = "memberIds", description = "채팅방 모든 인원들에 대한 Id", array = @ArraySchema(schema = @Schema(type = "string", example = "0190d945-4424-7bee-af99-3a83d52985cb")))
-    })
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "채팅방 생성", required = true, content = @Content(schema = @Schema(implementation = CreateRoomDto.class)))
     @PostMapping("/ChatRooms")
     public ResponseEntity<ChatRoom> createChatRoom(@RequestBody CreateRoomDto createRoomDto){
         return ResponseEntity.ok(createChatRoomService.create(createRoomDto));

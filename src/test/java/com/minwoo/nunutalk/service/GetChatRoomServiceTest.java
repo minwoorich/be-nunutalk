@@ -41,14 +41,14 @@ class GetChatRoomServiceTest {
         ChatRoom ChatRoom2 = ChatRoomRepository.save(ChatRoom.builder().title("코딩 스터디").state(ChatRoomState.ACTIVE).build());
         ChatRoom ChatRoom3 = ChatRoomRepository.save(ChatRoom.builder().title("잡담방").state(ChatRoomState.ACTIVE).build());
 
-        chatParticipantRepository.save(ChatParticipant.builder().member(member1).ChatRoom(ChatRoom1).build());
-        chatParticipantRepository.save(ChatParticipant.builder().member(member2).ChatRoom(ChatRoom1).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member1).chatRoom(ChatRoom1).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member2).chatRoom(ChatRoom1).build());
 
-        chatParticipantRepository.save(ChatParticipant.builder().member(member1).ChatRoom(ChatRoom2).build());
-        chatParticipantRepository.save(ChatParticipant.builder().member(member3).ChatRoom(ChatRoom2).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member1).chatRoom(ChatRoom2).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member3).chatRoom(ChatRoom2).build());
 
-        chatParticipantRepository.save(ChatParticipant.builder().member(member1).ChatRoom(ChatRoom3).build());
-        chatParticipantRepository.save(ChatParticipant.builder().member(member4).ChatRoom(ChatRoom3).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member1).chatRoom(ChatRoom3).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member4).chatRoom(ChatRoom3).build());
 
         // when
         List<ChatRoom> allChatRoomsForMember1 = getChatRoomService.findAllChatRooms(member1.getId());

@@ -38,9 +38,9 @@ class ChatParticipantJpaRepositoryTest {
         // given
         ChatRoom chatRoom = ChatRoomRepository.save(ChatRoom.builder().build());
 
-        chatParticipantJpaRepository.save(ChatParticipant.builder().ChatRoom(chatRoom).build());
-        chatParticipantJpaRepository.save(ChatParticipant.builder().ChatRoom(chatRoom).build());
-        chatParticipantJpaRepository.save(ChatParticipant.builder().ChatRoom(chatRoom).build());
+        chatParticipantJpaRepository.save(ChatParticipant.builder().chatRoom(chatRoom).build());
+        chatParticipantJpaRepository.save(ChatParticipant.builder().chatRoom(chatRoom).build());
+        chatParticipantJpaRepository.save(ChatParticipant.builder().chatRoom(chatRoom).build());
 
         // when
         List<ChatParticipant> ChatRooms = chatParticipantJpaRepository.findByChatRoomId(chatRoom.getId());

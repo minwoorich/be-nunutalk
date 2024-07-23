@@ -1,5 +1,6 @@
 package com.minwoo.nunutalk.service;
 
+import com.minwoo.nunutalk.controller.MemberChatRoomsResp;
 import com.minwoo.nunutalk.domain.ChatParticipant;
 import com.minwoo.nunutalk.domain.ChatRoom;
 import com.minwoo.nunutalk.domain.port.ChatParticipantRepository;

@@ -14,8 +14,8 @@ public class ChatRoomRepositoryImpl implements ChatRoomRepository {
     private final ChatRoomJpaRepository jpaRepository;
 
     @Override
-    public ChatRoom save(ChatRoom ChatRoom) {
-        return jpaRepository.save(ChatRoom);
+    public ChatRoom save(ChatRoom chatRoom) {
+        return jpaRepository.save(chatRoom);
     }
 
     @Override

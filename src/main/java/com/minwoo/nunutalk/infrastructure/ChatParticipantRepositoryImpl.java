@@ -30,7 +30,7 @@ public class ChatParticipantRepositoryImpl implements ChatParticipantRepository 
     }
 
     @Override
-    public List<ChatParticipant> findByChatRoomId(UUID ChatRoomId) {
-        return jpaRepository.findByChatRoomId(ChatRoomId);
+    public List<ChatParticipant> findByChatRoomId(UUID chatRoomId) {
+        return jpaRepository.findByChatRoomId(chatRoomId);
     }
 }

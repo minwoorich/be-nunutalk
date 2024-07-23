@@ -13,7 +13,7 @@ public record SendMessageDto(UUID roomId, UUID senderId, String msg, MessageType
         Member sender = Member.builder().id(senderId).build();
 
         return ChatMessage.builder()
-                .ChatRoom(chatRoom)
+                .chatRoom(chatRoom)
                 .sender(sender)
                 .messageType(type)
                 .msg(msg)

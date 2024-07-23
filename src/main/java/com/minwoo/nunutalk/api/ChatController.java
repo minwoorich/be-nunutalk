@@ -43,14 +43,13 @@ public class ChatController {
     private final GetChatRoomService getChatRoomService;
 
     @Operation(summary = "채팅방 생성", description = "채팅방을 오픈할 때 호출하는 API")
-    @ApiResponse(responseCode = "200", description = "채팅방생성에 성공하셨습니다", content = @Content(mediaType = "application/json"))
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "채팅방 생성", required = true, content = @Content(schema = @Schema(implementation = CreateRoomDto.class)))
-    @PostMapping("/ChatRooms")
+    @ApiResponse(responseCode = "200", description = "채팅방 생성에 성공하셨습니다", content = @Content(mediaType = "application/json"))
+    @PostMapping("/chatrooms")
     public ResponseEntity<ChatRoom> createChatRoom(@RequestBody CreateRoomDto createRoomDto){
         return ResponseEntity.ok(createChatRoomService.create(createRoomDto));
     }
 
-    @GetMapping("/ChatRooms/{memberId}")
+    @GetMapping("/chatrooms/{memberId}")
     public ResponseEntity<MemberChatRoomsResp> getChatRooms(@PathVariable(name = "memberId") UUID memberId){
         return ResponseEntity.ok(MemberChatRoomsResp.create(memberId, getChatRoomInfos(memberId)));
     }

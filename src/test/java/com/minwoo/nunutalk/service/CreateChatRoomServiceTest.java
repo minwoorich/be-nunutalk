@@ -1,6 +1,6 @@
 package com.minwoo.nunutalk.service;
 
-import com.minwoo.nunutalk.controller.dto.CreateRoomDto;
+import com.minwoo.nunutalk.api.dto.CreateRoomDto;
 import com.minwoo.nunutalk.domain.ChatParticipant;
 import com.minwoo.nunutalk.domain.ChatRoom;
 import com.minwoo.nunutalk.domain.Member;

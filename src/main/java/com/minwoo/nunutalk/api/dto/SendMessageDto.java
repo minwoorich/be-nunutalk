@@ -1,4 +1,4 @@
-package com.minwoo.nunutalk.controller.dto;
+package com.minwoo.nunutalk.api.dto;
 
 import com.minwoo.nunutalk.domain.ChatMessage;
 import com.minwoo.nunutalk.domain.ChatRoom;

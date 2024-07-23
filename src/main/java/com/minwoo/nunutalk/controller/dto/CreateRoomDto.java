@@ -1,4 +1,4 @@
-package com.minwoo.nunutalk.controller;
+package com.minwoo.nunutalk.controller.dto;
 
 import lombok.Builder;
 

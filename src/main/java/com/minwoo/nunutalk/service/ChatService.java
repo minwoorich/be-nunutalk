@@ -1,6 +1,6 @@
 package com.minwoo.nunutalk.service;
 
-import com.minwoo.nunutalk.controller.SendMessageDto;
+import com.minwoo.nunutalk.controller.dto.SendMessageDto;
 import com.minwoo.nunutalk.domain.ChatMessage;
 import com.minwoo.nunutalk.domain.port.ChatMessageRepository;
 import lombok.RequiredArgsConstructor;

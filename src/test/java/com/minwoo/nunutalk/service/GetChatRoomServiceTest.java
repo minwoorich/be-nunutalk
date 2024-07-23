@@ -26,7 +26,7 @@ class GetChatRoomServiceTest {
     @Autowired GetChatRoomService getChatRoomService;
     @Autowired MemberRepository memberRepository;
     @Autowired ChatParticipantRepository chatParticipantRepository;
-    @Autowired ChatRoomRepository chatRoomRepository;
+    @Autowired ChatRoomRepository ChatRoomRepository;
 
     @Test
     @DisplayName("특정 회원이 참가해있는 모든 채팅방을 조회할 수 있다")
@@ -37,18 +37,18 @@ class GetChatRoomServiceTest {
         Member member3 = memberRepository.save(Member.builder().memberName("박길동").build());
         Member member4 = memberRepository.save(Member.builder().memberName("최길동").build());
 
-        ChatRoom chatRoom1 = chatRoomRepository.save(ChatRoom.builder().title("독서 스터디").state(ChatRoomState.ACTIVE).build());
-        ChatRoom chatRoom2 = chatRoomRepository.save(ChatRoom.builder().title("코딩 스터디").state(ChatRoomState.ACTIVE).build());
-        ChatRoom chatRoom3 = chatRoomRepository.save(ChatRoom.builder().title("잡담방").state(ChatRoomState.ACTIVE).build());
+        ChatRoom ChatRoom1 = ChatRoomRepository.save(ChatRoom.builder().title("독서 스터디").state(ChatRoomState.ACTIVE).build());
+        ChatRoom ChatRoom2 = ChatRoomRepository.save(ChatRoom.builder().title("코딩 스터디").state(ChatRoomState.ACTIVE).build());
+        ChatRoom ChatRoom3 = ChatRoomRepository.save(ChatRoom.builder().title("잡담방").state(ChatRoomState.ACTIVE).build());
 
-        chatParticipantRepository.save(ChatParticipant.builder().member(member1).chatRoom(chatRoom1).build());
-        chatParticipantRepository.save(ChatParticipant.builder().member(member2).chatRoom(chatRoom1).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member1).ChatRoom(ChatRoom1).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member2).ChatRoom(ChatRoom1).build());
 
-        chatParticipantRepository.save(ChatParticipant.builder().member(member1).chatRoom(chatRoom2).build());
-        chatParticipantRepository.save(ChatParticipant.builder().member(member3).chatRoom(chatRoom2).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member1).ChatRoom(ChatRoom2).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member3).ChatRoom(ChatRoom2).build());
 
-        chatParticipantRepository.save(ChatParticipant.builder().member(member1).chatRoom(chatRoom3).build());
-        chatParticipantRepository.save(ChatParticipant.builder().member(member4).chatRoom(chatRoom3).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member1).ChatRoom(ChatRoom3).build());
+        chatParticipantRepository.save(ChatParticipant.builder().member(member4).ChatRoom(ChatRoom3).build());
 
         // when
         List<ChatRoom> allChatRoomsForMember1 = getChatRoomService.findAllChatRooms(member1.getId());

@@ -20,28 +20,28 @@ public class ChatParticipant extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chat_room_id")
-    private ChatRoom chatRoom;
+    private ChatRoom ChatRoom;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
     @Builder
-    private ChatParticipant(UUID id, ChatRoom chatRoom, Member member) {
+    private ChatParticipant(UUID id, ChatRoom ChatRoom, Member member) {
         this.id = id;
-        this.chatRoom = chatRoom;
+        this.ChatRoom = ChatRoom;
         this.member = member;
     }
 
-    public void linkChatRoom(ChatRoom chatRoom) {
-        this.chatRoom = chatRoom;
+    public void linkChatRoom(ChatRoom ChatRoom) {
+        this.ChatRoom = ChatRoom;
     }
 
     public void linkMember(Member member) {
         this.member = member;
     }
 
-    public static ChatParticipant create(ChatRoom chatRoom, Member member) {
-        return ChatParticipant.builder().member(member).chatRoom(chatRoom).build();
+    public static ChatParticipant create(ChatRoom ChatRoom, Member member) {
+        return ChatParticipant.builder().member(member).ChatRoom(ChatRoom).build();
     }
 }

@@ -27,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CreateChatRoomServiceTest {
 
     @Autowired MemberRepository memberRepository;
-    @Autowired ChatRoomRepository chatRoomRepository;
+    @Autowired ChatRoomRepository ChatRoomRepository;
     @Autowired CreateChatRoomService createChatRoomService;
     @Autowired ChatParticipantRepository chatParticipantRepository;
 
@@ -41,16 +41,16 @@ class CreateChatRoomServiceTest {
         Member member4 = memberRepository.save(Member.builder().memberName("오길동").build());
         List<UUID> memberIds = List.of(member1.getId(), member2.getId(), member3.getId(), member4.getId());
 
-        CreateRoomDto chatRoomDto = CreateRoomDto.builder().title("독서 스터디 모임입니다").memberIds(memberIds).build();
+        CreateRoomDto ChatRoomDto = CreateRoomDto.builder().title("독서 스터디 모임입니다").memberIds(memberIds).build();
 
         // when
-        ChatRoom chatRoom = createChatRoomService.create(chatRoomDto);
+        ChatRoom ChatRoom = createChatRoomService.create(ChatRoomDto);
 
         // then
-        assertThat(chatRoom).isNotNull();
-        assertThat(chatRoom)
+        assertThat(ChatRoom).isNotNull();
+        assertThat(ChatRoom)
                 .extracting("title", "state")
-                .contains(chatRoomDto.title(), ACTIVE);
+                .contains(ChatRoomDto.title(), ACTIVE);
     }
 
     @Test
@@ -63,12 +63,12 @@ class CreateChatRoomServiceTest {
         Member member4 = memberRepository.save(Member.builder().memberName("오길동").build());
         List<UUID> memberIds = List.of(member1.getId(), member2.getId(), member3.getId(), member4.getId());
 
-        CreateRoomDto chatRoomDto = CreateRoomDto.builder().title("독서 스터디 모임입니다").memberIds(memberIds).build();
+        CreateRoomDto ChatRoomDto = CreateRoomDto.builder().title("독서 스터디 모임입니다").memberIds(memberIds).build();
 
         // when
-        ChatRoom chatRoom = createChatRoomService.create(chatRoomDto);
+        ChatRoom ChatRoom = createChatRoomService.create(ChatRoomDto);
         List<Member> members = chatParticipantRepository
-                .findByChatRoomId(chatRoom.getId()).stream().map(ChatParticipant::getMember).toList();
+                .findByChatRoomId(ChatRoom.getId()).stream().map(ChatParticipant::getMember).toList();
 
         // then
         assertThat(members).hasSize(4)

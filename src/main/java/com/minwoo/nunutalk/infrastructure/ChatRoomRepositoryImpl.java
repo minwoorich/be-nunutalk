@@ -14,12 +14,12 @@ public class ChatRoomRepositoryImpl implements ChatRoomRepository {
     private final ChatRoomJpaRepository jpaRepository;
 
     @Override
-    public ChatRoom save(ChatRoom chatRoom) {
-        return jpaRepository.save(chatRoom);
+    public ChatRoom save(ChatRoom ChatRoom) {
+        return jpaRepository.save(ChatRoom);
     }
 
     @Override
     public ChatRoom findById(UUID id) {
-        return jpaRepository.findById(id).orElseThrow(() -> new RuntimeException("Can't find chatRoom with id: " + id));
+        return jpaRepository.findById(id).orElseThrow(() -> new RuntimeException("Can't find ChatRoom with id: " + id));
     }
 }

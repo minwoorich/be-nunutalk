@@ -33,12 +33,12 @@ public class ChatController {
     private final CreateChatRoomService createChatRoomService;
     private final GetChatRoomService getChatRoomService;
 
-    @PostMapping("/chatrooms")
+    @PostMapping("/ChatRooms")
     public ResponseEntity<ChatRoom> createChatRoom(@RequestBody CreateRoomDto createRoomDto){
         return ResponseEntity.ok(createChatRoomService.create(createRoomDto));
     }
 
-    @GetMapping("/chatrooms/{memberId}")
+    @GetMapping("/ChatRooms/{memberId}")
     public ResponseEntity<MemberChatRoomsResp> getChatRooms(@PathVariable(name = "memberId") UUID memberId){
         return ResponseEntity.ok(MemberChatRoomsResp.create(memberId, getChatRoomInfos(memberId)));
     }

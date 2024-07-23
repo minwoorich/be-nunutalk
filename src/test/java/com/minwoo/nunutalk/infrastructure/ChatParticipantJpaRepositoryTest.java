@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ChatParticipantJpaRepositoryTest {
 
     @Autowired ChatParticipantJpaRepository chatParticipantJpaRepository;
-    @Autowired ChatRoomRepository chatRoomRepository;
+    @Autowired ChatRoomRepository ChatRoomRepository;
 
     @Rollback(value = false)
     @Test
@@ -36,16 +36,16 @@ class ChatParticipantJpaRepositoryTest {
     @DisplayName("chat_room_id 로 연관된 ChatParticipant 모두를 조회할 수 있다")
     void findByChatRoomId() {
         // given
-        ChatRoom chatRoom = chatRoomRepository.save(ChatRoom.builder().build());
+        ChatRoom chatRoom = ChatRoomRepository.save(ChatRoom.builder().build());
 
-        chatParticipantJpaRepository.save(ChatParticipant.builder().chatRoom(chatRoom).build());
-        chatParticipantJpaRepository.save(ChatParticipant.builder().chatRoom(chatRoom).build());
-        chatParticipantJpaRepository.save(ChatParticipant.builder().chatRoom(chatRoom).build());
+        chatParticipantJpaRepository.save(ChatParticipant.builder().ChatRoom(chatRoom).build());
+        chatParticipantJpaRepository.save(ChatParticipant.builder().ChatRoom(chatRoom).build());
+        chatParticipantJpaRepository.save(ChatParticipant.builder().ChatRoom(chatRoom).build());
 
         // when
-        List<ChatParticipant> chatRooms = chatParticipantJpaRepository.findByChatRoomId(chatRoom.getId());
+        List<ChatParticipant> ChatRooms = chatParticipantJpaRepository.findByChatRoomId(chatRoom.getId());
 
         // then
-        assertThat(chatRooms).hasSize(3);
+        assertThat(ChatRooms).hasSize(3);
     }
 }

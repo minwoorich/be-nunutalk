@@ -11,20 +11,20 @@ import java.util.UUID;
 
 // TODO : filter 파라미터
 @Builder
-public record MemberChatRoomsResp(UUID memberId, List<ChatRoomInfo> chatRoomInfos) {
+public record MemberChatRoomsResp(UUID memberId, List<ChatRoomInfo> ChatRoomInfos) {
     @Builder
     public record ChatRoomInfo(UUID roomId, ChatRoomState state, String title, @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") ZonedDateTime createdAt){
-        public static ChatRoomInfo from(ChatRoom chatRoom){
+        public static ChatRoomInfo from(ChatRoom ChatRoom){
             return ChatRoomInfo.builder()
-                    .roomId(chatRoom.getId())
-                    .state(chatRoom.getState())
-                    .title(chatRoom.getTitle())
-                    .createdAt(chatRoom.getCreatedAt())
+                    .roomId(ChatRoom.getId())
+                    .state(ChatRoom.getState())
+                    .title(ChatRoom.getTitle())
+                    .createdAt(ChatRoom.getCreatedAt())
                     .build();
         }
     }
 
-    public static MemberChatRoomsResp create(UUID memberId, List<ChatRoomInfo> chatRoomInfos) {
-        return MemberChatRoomsResp.builder().memberId(memberId).chatRoomInfos(chatRoomInfos).build();
+    public static MemberChatRoomsResp create(UUID memberId, List<ChatRoomInfo> ChatRoomInfos) {
+        return MemberChatRoomsResp.builder().memberId(memberId).ChatRoomInfos(ChatRoomInfos).build();
     }
 }

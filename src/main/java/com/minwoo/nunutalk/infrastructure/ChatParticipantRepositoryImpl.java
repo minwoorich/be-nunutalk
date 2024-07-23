@@ -16,7 +16,7 @@ public class ChatParticipantRepositoryImpl implements ChatParticipantRepository 
 
     @Override
     public ChatParticipant findById(UUID id) {
-        return jpaRepository.findById(id).orElseThrow(() -> new RuntimeException("Can't find chatRoom with id: " + id));
+        return jpaRepository.findById(id).orElseThrow(() -> new RuntimeException("Can't find ChatRoom with id: " + id));
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ChatParticipantRepositoryImpl implements ChatParticipantRepository 
     }
 
     @Override
-    public List<ChatParticipant> findByChatRoomId(UUID chatRoomId) {
-        return jpaRepository.findByChatRoomId(chatRoomId);
+    public List<ChatParticipant> findByChatRoomId(UUID ChatRoomId) {
+        return jpaRepository.findByChatRoomId(ChatRoomId);
     }
 }

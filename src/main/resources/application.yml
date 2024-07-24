@@ -12,6 +12,9 @@ spring:
   config:
     activate:
       on-profile: local
+  messages:
+    basename: messages, config.i18n.messages
+    encoding: UTF-8
 
   application:
     name: nunutalk

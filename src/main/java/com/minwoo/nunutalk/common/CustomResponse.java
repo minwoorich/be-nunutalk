@@ -1,13 +1,30 @@
 package com.minwoo.nunutalk.common;
 
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
+import lombok.Builder;
+import org.springframework.http.HttpStatus;
 
-public class CustomResponse<T> {
-    private String uri;
-    private int status;
-    private String message;
-    private T body;
+import java.time.LocalDateTime;
 
+@Builder
+public record CustomResponse<T> (int code, HttpStatus httpStatus, LocalDateTime timestamp, T body){
+
+    public static <T> CustomResponse<T> of(HttpStatus httpStatus, T body) {
+        return CustomResponse.<T>builder()
+                .code(httpStatus.value())
+                .httpStatus(httpStatus)
+                .body(body)
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+    public static <T> CustomResponse<T> create() {
+        return CustomResponse.<T>builder()
+                .code(HttpStatus.CREATED.value())
+                .httpStatus(HttpStatus.CREATED)
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    public static <T> CustomResponse<T> ok(T body) {
+        return of(HttpStatus.OK, body);
+    }
 }

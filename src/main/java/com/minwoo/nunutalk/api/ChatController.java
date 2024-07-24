@@ -3,14 +3,13 @@ package com.minwoo.nunutalk.api;
 import com.minwoo.nunutalk.api.dto.CreateRoomReq;
 import com.minwoo.nunutalk.api.dto.MemberChatRoomsResp;
 import com.minwoo.nunutalk.api.dto.SendMessageDto;
+import com.minwoo.nunutalk.common.CustomResponse;
 import com.minwoo.nunutalk.common.annotations.ApiV1Controller;
 import com.minwoo.nunutalk.domain.ChatMessage;
-import com.minwoo.nunutalk.domain.ChatRoom;
 import com.minwoo.nunutalk.service.ChatService;
 import com.minwoo.nunutalk.service.CreateChatRoomService;
 import com.minwoo.nunutalk.service.GetChatRoomService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
@@ -34,13 +33,14 @@ public class ChatController implements IChatController{
     }
 
     @Override
-    public ResponseEntity<ChatRoom> createChatRoom(CreateRoomReq createRoomReq){
-        return ResponseEntity.ok(createChatRoomService.create(createRoomReq));
+    public CustomResponse<?> createChatRoom(CreateRoomReq createRoomReq){
+        createChatRoomService.create(createRoomReq);
+        return CustomResponse.create();
     }
 
     @Override
-    public ResponseEntity<MemberChatRoomsResp> getChatRooms(UUID memberId){
-        return ResponseEntity.ok(MemberChatRoomsResp.create(memberId, getChatRoomInfos(memberId)));
+    public CustomResponse<MemberChatRoomsResp> getChatRooms(UUID memberId){
+        return CustomResponse.ok(MemberChatRoomsResp.create(memberId, getChatRoomInfos(memberId)));
     }
 
     private List<MemberChatRoomsResp.ChatRoomInfo> getChatRoomInfos(UUID memberId) {

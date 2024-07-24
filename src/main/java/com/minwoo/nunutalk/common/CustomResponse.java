@@ -6,11 +6,10 @@ import org.springframework.http.HttpStatus;
 import java.time.LocalDateTime;
 
 @Builder
-public record CustomResponse<T> (int code, HttpStatus httpStatus, LocalDateTime timestamp, T body){
+public record CustomResponse<T> (HttpStatus httpStatus, LocalDateTime timestamp, T body){
 
     public static <T> CustomResponse<T> of(HttpStatus httpStatus, T body) {
         return CustomResponse.<T>builder()
-                .code(httpStatus.value())
                 .httpStatus(httpStatus)
                 .body(body)
                 .timestamp(LocalDateTime.now())
@@ -18,7 +17,6 @@ public record CustomResponse<T> (int code, HttpStatus httpStatus, LocalDateTime 
     }
     public static <T> CustomResponse<T> create() {
         return CustomResponse.<T>builder()
-                .code(HttpStatus.CREATED.value())
                 .httpStatus(HttpStatus.CREATED)
                 .timestamp(LocalDateTime.now())
                 .build();

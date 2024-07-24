@@ -9,6 +9,8 @@ import com.minwoo.nunutalk.domain.ChatMessage;
 import com.minwoo.nunutalk.service.ChatService;
 import com.minwoo.nunutalk.service.CreateChatRoomService;
 import com.minwoo.nunutalk.service.GetChatRoomService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -18,6 +20,7 @@ import java.util.UUID;
 
 @Slf4j
 @ApiV1Controller
+@RequiredArgsConstructor
 public class ChatControllerImpl implements ChatController {
 
     private final SimpMessagingTemplate template;
@@ -25,15 +28,8 @@ public class ChatControllerImpl implements ChatController {
     private final CreateChatRoomService createChatRoomService;
     private final GetChatRoomService getChatRoomService;
 
-    public ChatControllerImpl(SimpMessagingTemplate template, ChatService chatService, CreateChatRoomService createChatRoomService, GetChatRoomService getChatRoomService) {
-        this.template = template;
-        this.chatService = chatService;
-        this.createChatRoomService = createChatRoomService;
-        this.getChatRoomService = getChatRoomService;
-    }
-
     @Override
-    public CustomResponse<?> createChatRoom(CreateRoomReq createRoomReq){
+    public CustomResponse<?> createChatRoom(@Valid CreateRoomReq createRoomReq){
         createChatRoomService.create(createRoomReq);
         return CustomResponse.create();
     }

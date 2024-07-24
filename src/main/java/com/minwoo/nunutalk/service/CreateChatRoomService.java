@@ -20,7 +20,7 @@ import static com.minwoo.nunutalk.domain.enums.ChatRoomState.ACTIVE;
 @Transactional(readOnly = true)
 public class CreateChatRoomService {
 
-    private final ChatRoomRepository ChatRoomRepository;
+    private final ChatRoomRepository chatRoomRepository;
     private final ChatParticipantRepository chatParticipantRepository;
     private final MemberRepository memberRepository;
 
@@ -28,7 +28,7 @@ public class CreateChatRoomService {
     public ChatRoom create(CreateRoomReq createRoomReq) {
 
         // 채팅방 엔티티 생성 및 저장
-        ChatRoom chatRoom = ChatRoom.create(createRoomReq.title(), ACTIVE);
+        ChatRoom chatRoom = chatRoomRepository.save(ChatRoom.create(createRoomReq.title(), ACTIVE));
 
         // 채팅방에 참가한 모든 인원들 엔티티 생성 및 저장
         List<Member> members = memberRepository.findAllIn(createRoomReq.memberIds());

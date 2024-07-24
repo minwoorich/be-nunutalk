@@ -1,6 +1,6 @@
 package com.minwoo.nunutalk.service;
 
-import com.minwoo.nunutalk.api.dto.CreateRoomDto;
+import com.minwoo.nunutalk.api.dto.CreateRoomReq;
 import com.minwoo.nunutalk.domain.ChatParticipant;
 import com.minwoo.nunutalk.domain.ChatRoom;
 import com.minwoo.nunutalk.domain.Member;
@@ -25,13 +25,13 @@ public class CreateChatRoomService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public ChatRoom create(CreateRoomDto createRoomDto) {
+    public ChatRoom create(CreateRoomReq createRoomReq) {
 
         // 채팅방 엔티티 생성 및 저장
-        ChatRoom chatRoom = ChatRoom.create(createRoomDto.title(), ACTIVE);
+        ChatRoom chatRoom = ChatRoom.create(createRoomReq.title(), ACTIVE);
 
         // 채팅방에 참가한 모든 인원들 엔티티 생성 및 저장
-        List<Member> members = memberRepository.findAllIn(createRoomDto.memberIds());
+        List<Member> members = memberRepository.findAllIn(createRoomReq.memberIds());
 
         // ChatParticipant (연결 테이블) 생성 및 저장
         members.stream()

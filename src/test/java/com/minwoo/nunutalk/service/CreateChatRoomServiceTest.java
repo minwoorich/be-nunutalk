@@ -1,6 +1,6 @@
 package com.minwoo.nunutalk.service;
 
-import com.minwoo.nunutalk.api.dto.CreateRoomDto;
+import com.minwoo.nunutalk.api.dto.CreateRoomReq;
 import com.minwoo.nunutalk.domain.ChatParticipant;
 import com.minwoo.nunutalk.domain.ChatRoom;
 import com.minwoo.nunutalk.domain.Member;
@@ -41,7 +41,7 @@ class CreateChatRoomServiceTest {
         Member member4 = memberRepository.save(Member.builder().memberName("오길동").build());
         List<UUID> memberIds = List.of(member1.getId(), member2.getId(), member3.getId(), member4.getId());
 
-        CreateRoomDto ChatRoomDto = CreateRoomDto.builder().title("독서 스터디 모임입니다").memberIds(memberIds).build();
+        CreateRoomReq ChatRoomDto = CreateRoomReq.builder().title("독서 스터디 모임입니다").memberIds(memberIds).build();
 
         // when
         ChatRoom ChatRoom = createChatRoomService.create(ChatRoomDto);
@@ -63,7 +63,7 @@ class CreateChatRoomServiceTest {
         Member member4 = memberRepository.save(Member.builder().memberName("오길동").build());
         List<UUID> memberIds = List.of(member1.getId(), member2.getId(), member3.getId(), member4.getId());
 
-        CreateRoomDto ChatRoomDto = CreateRoomDto.builder().title("독서 스터디 모임입니다").memberIds(memberIds).build();
+        CreateRoomReq ChatRoomDto = CreateRoomReq.builder().title("독서 스터디 모임입니다").memberIds(memberIds).build();
 
         // when
         ChatRoom ChatRoom = createChatRoomService.create(ChatRoomDto);

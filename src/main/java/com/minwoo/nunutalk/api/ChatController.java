@@ -1,7 +1,7 @@
 package com.minwoo.nunutalk.api;
 
 import com.minwoo.nunutalk.common.annotations.ApiV1Controller;
-import com.minwoo.nunutalk.api.dto.CreateRoomDto;
+import com.minwoo.nunutalk.api.dto.CreateRoomReq;
 import com.minwoo.nunutalk.api.dto.MemberChatRoomsResp;
 import com.minwoo.nunutalk.api.dto.SendMessageDto;
 import com.minwoo.nunutalk.domain.ChatMessage;
@@ -10,11 +10,7 @@ import com.minwoo.nunutalk.service.ChatService;
 import com.minwoo.nunutalk.service.CreateChatRoomService;
 import com.minwoo.nunutalk.service.GetChatRoomService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -45,8 +41,8 @@ public class ChatController {
     @Operation(summary = "채팅방 생성", description = "채팅방을 오픈할 때 호출하는 API")
     @ApiResponse(responseCode = "200", description = "채팅방 생성에 성공하셨습니다", content = @Content(mediaType = "application/json"))
     @PostMapping("/chatrooms")
-    public ResponseEntity<ChatRoom> createChatRoom(@RequestBody CreateRoomDto createRoomDto){
-        return ResponseEntity.ok(createChatRoomService.create(createRoomDto));
+    public ResponseEntity<ChatRoom> createChatRoom(@RequestBody CreateRoomReq createRoomReq){
+        return ResponseEntity.ok(createChatRoomService.create(createRoomReq));
     }
 
     @GetMapping("/chatrooms/{memberId}")
